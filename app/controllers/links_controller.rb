@@ -17,10 +17,16 @@ class LinksController < ApplicationController
     end
   end
   
+  def update
+    @link = Link.find(params[:id])
+    @link.update_attributes(read: !@link.read)
+    redirect_to links_path
+  end
+  
   private
   
     def link_params
-      params.require(:link).permit(:title, :url, :read)
+      params.require(:link).permit(:title, :url, :user_id)
     end
     
     def user_login

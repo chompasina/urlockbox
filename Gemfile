@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'figaro'
+gem 'responders'
 gem 'rails_12factor', group: :production
 
 group :development, :test do
