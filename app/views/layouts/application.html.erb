@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <% flash.each do |type, msg| %>
+      <%= content_tag :div, msg, class: "top-navbar flash-#{type}" %>
+      <br>
+    <% end %>
+  <div class="col-md-3">
+
     <%= yield %>
   </body>
 </html>

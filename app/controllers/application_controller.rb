@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
   def authorize!
     if user_signed_in?
-      super
+      redirect_to links_path
     else
       flash[:error] = "Please login first"
       redirect_to login_path

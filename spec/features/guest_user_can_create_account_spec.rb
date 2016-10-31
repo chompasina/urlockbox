@@ -29,8 +29,8 @@ RSpec.feature "guest user registers account" do
     expect(page).to_not have_link 'Log In'
     
     click_link 'Logout'
-    expect(current_path).to eq(root_path)
-    expect(page).to have_link('Log In')
+    expect(current_path).to eq(login_path)
+    expect(page).to have_button('Login')
     
   end
 end
