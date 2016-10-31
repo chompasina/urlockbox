@@ -9,3 +9,10 @@
   <%= f.submit "Create Link"  %>
 <% end %>
 
+<h2>Your links</h2>
+<% @links.each do |link| %>
+  <%= link.created_at %>
+  <%= link.title %>
+  <%= link.url %>
+  <%= link.read %>
+<% end %>

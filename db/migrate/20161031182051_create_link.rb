@@ -4,6 +4,8 @@ class CreateLink < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :url
       t.boolean :read,  default: false
+      
+      t.timestamps null: false
     end
   end
 end

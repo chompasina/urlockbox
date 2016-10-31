@@ -2,6 +2,7 @@ class LinksController < ApplicationController
   before_action :user_login
   def index
     @link = Link.new
+    @links = current_user.links
   end
   
   def create
