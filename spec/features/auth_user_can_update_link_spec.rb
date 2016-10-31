@@ -25,5 +25,18 @@ RSpec.feature "Authenticated User Can Update Link Status" do
     fill_in 'Title', with: 'Democracy Now!'
     fill_in 'URL', with: 'http://www.democracynow.org'
     click_button 'Create Link'
+    
+    within("#link-list") do
+      click_button 'Change Status'
+      
+      # expect(link.status).to eq(true)
+      expect(page).to have_content("Change Status")
+      expect(page).to have_content("Read? true")
+      
+      click_button "Change Status"
+      
+      # expect(link.status).to eq(false)
+      expect(page).to have_content("Read? false")
+    end
   end
 end
