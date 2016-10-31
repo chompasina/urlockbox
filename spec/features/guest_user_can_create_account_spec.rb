@@ -24,6 +24,12 @@ RSpec.feature "guest user registers account" do
     fill_in "Confirm Password", with: "password"
     click_on "Create Account"
     
+    expect(current_path).to eq('/login')
+    
+    fill_in "Email Address", with: "tommasina@example.com"
+    fill_in "Password", with: "password"
+    click_on 'Login'
+    
     expect(current_path).to eq '/links'
     expect(page).to have_link 'Logout'
     expect(page).to_not have_link 'Log In'
