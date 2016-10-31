@@ -10,7 +10,7 @@ RSpec.feature "guest user registers account" do
     
     expect(current_path).to eq(login_path)
     
-    expect(page).to have_content("Log In or Sign Up")
+    expect(page).to have_content("log in below or Sign Up")
     
     click_link "Sign Up"
     
