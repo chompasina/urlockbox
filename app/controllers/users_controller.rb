@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     if @user.save
       flash[:alert] = "User created"
       session[:user_id] = @user.id
-      redirect_to links_path
+      redirect_to login_path
     else
-      flash[:failure] = @user.errors.full_messages.first
+      flash[:failure] = @user.errors.full_messages.join(', ')
       render :new
     end
   end

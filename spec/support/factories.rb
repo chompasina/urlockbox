@@ -5,6 +5,7 @@ FactoryGirl.define do
     password_confirmation "MyPassword"
   end
   
+  
   sequence :email do |n|
     "myEmail#{n}@example.com"
   end
