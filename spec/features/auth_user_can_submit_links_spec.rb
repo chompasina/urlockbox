@@ -14,7 +14,7 @@ RSpec.feature "Authenticated User Can Submit Links" do
     click_button 'Login'
     
     expect(current_path).to eq(links_path)
-    # visit links_path
+    visit links_path
     
     fill_in 'Title', with: 'Democracy Now!'
     fill_in 'URL', with: 'http://www.democracynow.org'

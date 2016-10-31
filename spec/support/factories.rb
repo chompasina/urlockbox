@@ -3,6 +3,7 @@ FactoryGirl.define do
     email
     password "MyPassword"
     password_confirmation "MyPassword"
+    id "1"
   end
   
   
