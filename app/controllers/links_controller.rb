@@ -19,7 +19,7 @@ class LinksController < ApplicationController
   
   def update
     @link = Link.find(params[:id])
-    @link.update_attributes(now_read: @link.switch)
+    @link.update_attributes(read: !@link.read)
     redirect_to links_path
   end
   
