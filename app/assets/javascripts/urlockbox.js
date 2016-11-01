@@ -2,14 +2,18 @@ $(document).ready(function(){
   changeStatus();
 });
 
+
 function changeStatus(){
   $('#link-list').on('click', '#toggle-link-status', function(){
     var $link = $(this).closest('.link');
     var $read = $link.find('.link-status').text();
-    // debugger;
     var button = $link.context;
-    // var button = document.getElementById("toggle-link-status");
     var id = button.getAttribute('data-id');
+    if(button.innerHTML === 'Mark as Read'){
+      button.innerHTML = "Mark as Unread";
+    } else {
+      button.innerHTML = "Mark as Read";
+    }
     
     $.getJSON('/api/v1/links/' + id, function(link){
       var status = link.read;
@@ -21,11 +25,6 @@ function changeStatus(){
               },
         success: function(link){
           $('#link-status' + id).html("Read? " + !status);
-          if(status === true){
-            button.innerHTML("Mark as Unread");
-          } else {
-            button.innerHTML("Mark as Read");
-          }
         }
       });
     });

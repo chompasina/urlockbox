@@ -27,13 +27,13 @@ RSpec.feature "Authenticated User Can Update Link Status" do
     click_button 'Create Link'
     
     within("#link-list") do
-      click_button 'Change Status'
+      click_button 'Mark as Read'
       
       # expect(link.status).to eq(true)
-      expect(page).to have_content("Change Status")
+      expect(page).to have_content("Mark as Unread")
       expect(page).to have_content("Read? true")
       
-      click_button "Change Status"
+      click_button "Mark as Unread"
       
       # expect(link.status).to eq(false)
       expect(page).to have_content("Read? false")
