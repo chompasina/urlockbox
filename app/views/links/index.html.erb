@@ -18,7 +18,7 @@
       <li><%= link.title %></li>
       <li><%= link_to link.url, link.url, :target => "_blank" %></li>
       <li class="link-status" id='link-status<%= link.id %>' > Read? <%= link.read %></li> 
-        <button data-id='<%= link.id %>' id='toggle-link-status'>Mark as <%=  %></button>
+        <button data-id='<%= link.id %>' id='toggle-link-status'><%= has_read?(link) %></button>
         
     </div>
   <% end %>
