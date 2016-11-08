@@ -16,9 +16,9 @@
     <div class='link' data-id='<%=link.id%>'>
       <li><h5> Added Link <%= link.id%> on<%= link.created_at %> </h5></li>
       <li><%= link.title %></li>
-      <li><%= link.url %></li>
+      <li><%= link_to link.url, link.url, :target => "_blank" %></li>
       <li class="link-status" id='link-status<%= link.id %>' > Read? <%= link.read %></li> 
-        <button data-id='<%= link.id %>' id='toggle-link-status'>Mark as Read</button>
+        <button data-id='<%= link.id %>' id='toggle-link-status'>Mark as <%=  %></button>
         
     </div>
   <% end %>
