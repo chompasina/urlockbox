@@ -2,9 +2,9 @@ module ApplicationHelper
   
   def has_read?(link)
     if link.read
-      return "Mark as Read"
-    else
       return "Mark as Unread"
+    else
+      return "Mark as Read"
     end
   end
   

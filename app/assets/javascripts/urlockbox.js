@@ -1,5 +1,6 @@
 $(document).ready(function(){
   changeStatus();
+  renderLinkList();
 });
 
 
@@ -30,3 +31,59 @@ function changeStatus(){
     });
   });
 }
+
+function renderLinkList(){
+  $.ajax({
+    type: 'GET',
+    url: 'api/v1/links/',
+    dataType: 'JSON'
+  })
+    .then(collectLinks);
+  }
+  
+function collectLinks(linkList){
+  linkList.map(function(link){
+    renderLink(link);
+  });
+}
+
+function renderLink(link){
+  $('#link-list').prepend(
+    "<div class='link' data-id='" +
+    link.id +
+    "'><h6>Added link " +
+    link.id + 
+    " on " +
+    link.created_at +
+    "</h6><p class='title-field' contenteditable='true'><em>" +
+    link.title + 
+    "</em></p><p class='url-field' contenteditable='true'>" +
+    changeLink(link) +
+    "</p><p class='url-status'> Read? " +
+    link.read +
+    "</p>" +
+    "<button data-id='" +
+    link.id +
+    "' id='toggle-link-status'>" +
+    changeButton(link) +
+    "</button></div>"
+  )
+}
+
+function changeButton(link){
+  if(link.read){
+    return "Mark as Unread"; 
+  } else {
+    return "Mark as Read";
+  }
+}
+
+function changeLink(link){
+  if(link.read){
+    $('.url-field').addClass('.link-read')
+    return link.url;
+  } else {
+    return link.url;
+  }
+}
+  
