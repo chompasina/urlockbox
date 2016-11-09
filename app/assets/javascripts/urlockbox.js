@@ -1,6 +1,9 @@
 $(document).ready(function(){
   changeStatus();
   searchBar();
+  filterRead();
+  filterUnread();
+  filterAlpha();
   editTitle();
   editTitleOnClick();
   editUrlOnClick();

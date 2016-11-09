@@ -82,7 +82,7 @@ function searchBar(){
     console.log($currentSearchTerm)
     
     $links.each(function(index, link){
-      if ($(link).find(".title-field").text().toLowerCase().indexOf($currentSearchTerm) !== -1 ){
+      if ($(link).find(".title-field").text().toLowerCase().indexOf($currentSearchTerm) !== -1 || $(link).find(".url-field").text().toLowerCase().indexOf($currentSearchTerm) !== -1 ){
         $(link).show();
       } else {
         $(link).hide();
@@ -91,3 +91,48 @@ function searchBar(){
   });
 }
 
+function filterRead(){
+  var $rows = $('.link-table').children()
+  var $links = $rows.children("tr.link-row")
+
+  $('.filter-read').on('click', function(e){
+    $links.each(function(index, link){
+      if ($(link).data("status") === true ){
+        $(link).show();
+      } else {
+        $(link).hide();
+      }
+    });
+  });
+}
+
+function filterUnread(){
+  var $rows = $('.link-table').children()
+  var $links = $rows.children("tr.link-row")
+
+  $('.filter-unread').on('click', function(e){
+    $links.each(function(index, link){
+      if ($(link).data("status") === false ){
+        $(link).show();
+      } else {
+        $(link).hide();
+      }
+    });
+  });
+}
+
+function filterAlpha(){
+  var $rows = $('.link-table').children()
+  var $links = $rows.children("tr.link-row")
+
+  $('.filter-alpha').on('click', function(){
+    $links.sort(function(a, b){
+      var upA = $(a).find(".title-field").text().toUpperCase();
+      debugger;
+      var upB = $(b).find(".title-field").text().toUpperCase();
+      
+      return (upA < upB) ? -1 : (upA > upB) ? 1: 0;
+    })
+  $.each($links, function(index, item) { $rows.append(item); });
+})
+}
