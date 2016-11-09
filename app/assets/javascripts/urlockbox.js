@@ -27,7 +27,8 @@ function storeNewStatus(button, newStatus){
       var id = $(button).data('id');
       var row = $('.link-row[data-id="' + id + '"]')
       updateStatus(id, row);
-      updateStyle(id,row);
+      updateButton(id,row);
+      updateStyle(id);
     }
   })
 }
@@ -41,13 +42,22 @@ function updateStatus(id, row){
   }
 }
 
-function updateStyle(id, row){
-  var button = $('.button[data-id="' + id + '"]')
-  if(button.text() === 'Mark as Read'){
-      button.text("Mark as Unread");
-    } else if (button.text() === "Mark as Unread"){
-      button.text("Mark as Read");
-    }
+function updateButton(id, row){
+  var $button = $('.button[data-id="' + id + '"]')
+  if($button.text() === 'Mark as Unread'){
+      $button.text("Mark as Read");
+  } else {
+    $button.text("Mark as Unread");
+  }
+}
+
+function updateStyle(id){
+  var $url = $('.url-field[data-id="' + id + '"]')
+  if($url[0].style['cssText'] === 'text-decoration: line-through;'){
+    $url[0].style['cssText'] = 'text-decoration: none;'
+  } else {
+    $url[0].style['cssText'] = 'text-decoration: line-through;'
+  }
 }
 
    
