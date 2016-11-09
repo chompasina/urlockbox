@@ -1,9 +1,9 @@
 function editTitle(){
-  $('#latest-links').on('keypress', '.title-field', function(e) {
+  $('#link-list').on('keypress', '.title-field', function(e) {
     if(e.which === 13){
       
-    var $link = $(this).closest(".link");
-    var $updated = $link.find('.title-field').text();
+    var $link = $(this);
+    var $updated = $link.text();
     var updateParams = {
         title: $updated
     };
@@ -19,9 +19,9 @@ function editTitle(){
 }
 
 function editTitleOnClick(){
-  $('#latest-links').on('focusout', '.title-field', function(e){
+  $('#link-list').on('focusout', '.title-field', function(e){
     var $link = $(this).closest(".link");
-    var $updated = $link.find('.title-field').text();
+    var $updated = $link.text();
     var updateParams = {
         title: $updated
     };
@@ -35,12 +35,12 @@ function editTitleOnClick(){
   });  
 }
 
-function editBodyOnClick(){
-  $('#latest-links').on('focusout', '.body-field', function(e){
+function editUrlOnClick(){
+  $('#link-list').on('focusout', '.url-field', function(e){
     var $link = $(this).closest(".link");
-    var $updated = $link.find('.body-field').text();
+    var $updated = $link.text();
     var updateParams = {
-        body: $updated
+        url: $updated
     };
     $.ajax({
       type: 'PUT',
@@ -52,14 +52,14 @@ function editBodyOnClick(){
   });  
 }
 
-function editBody(){
-  $('#latest-links').on('keypress', '.body-field', function(e) {
+function editUrl(){
+  $('#link-list').on('keypress', '.url-field', function(e) {
     if(e.which === 13){
       
     var $link = $(this).closest(".link");
-    var $updated = $link.find('.body-field').text();
+    var $updated = $link.text();
     var updateParams = {
-        body: $updated
+        url: $updated
     };
     $.ajax({
       type: 'PUT',
@@ -71,3 +71,20 @@ function editBody(){
   }
   });
 }
+
+function searchBar(){
+  $('.search-bar').on('keyup', function(e){
+    var $currentSearchTerm = this.value;
+    var $linkList = $('#link-list').children();
+    
+    $.each($linkList, function(index, link){
+      console.log($currentSearchTerm);
+      if ($(link).find(".title-field").text().indexOf($currentSearchTerm) !== -1 || $(link).find(".url-field").text().indexOf($currentSearchTerm) !== -1){
+        $(link).show();
+      } else {
+        $(link).hide();
+      }
+    });
+    });    
+}
+

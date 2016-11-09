@@ -1,5 +1,10 @@
 $(document).ready(function(){
   changeStatus();
+  editTitle();
+  editTitleOnClick();
+  editUrlOnClick();
+  editUrl();
+  searchBar();
   // renderLinkList();
 });
 

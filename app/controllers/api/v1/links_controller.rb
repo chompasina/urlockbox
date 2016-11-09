@@ -1,4 +1,5 @@
 class Api::V1::LinksController < ApplicationController
+  include ActiveModel::Validations
   respond_to :json, :html
   
   def index
