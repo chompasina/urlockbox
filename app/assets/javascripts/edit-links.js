@@ -122,17 +122,22 @@ function filterUnread(){
 }
 
 function filterAlpha(){
-  var $rows = $('.link-table').children()
-  var $links = $rows.children("tr.link-row")
-
+  var $table = $('table')
+  var $tableBody = $table.find('tbody');
   $('.filter-alpha').on('click', function(){
-    $links.sort(function(a, b){
-      var upA = $(a).find(".title-field").text().toUpperCase();
-      debugger;
-      var upB = $(b).find(".title-field").text().toUpperCase();
-      
-      return (upA < upB) ? -1 : (upA > upB) ? 1: 0;
+    rows = $tableBody.find('tr.link-row');
+    sortedRows = rows.sort(sortRows);
+    $tableBody.remove('tr.link-row');
+    $tableBody.append(sortedRows);
     })
-  $.each($links, function(index, item) { $rows.append(item); });
-})
+}
+
+function sortRows(a, b){
+  if ( $(a).find('td:first-Child').text().toUpperCase() > $(b).find('td:first-Child').text().toUpperCase() ) {
+    return 1;
+  }
+  if ( $(a).find('td:first-Child').text().toUpperCase() < $(b).find('td:first-Child').text().toUpperCase() ) {
+    return -1;
+  }
+  return 0;
 }
