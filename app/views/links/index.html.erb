@@ -29,7 +29,7 @@
       <% @links.each do |link| %>
       <tr class="link-row" data-id="<%=link.id%>" data-status="<%=link.read%>">
         <td class='title-field' data-filter='true' data-input='#filter' data-id="<%=link.id%>" contenteditable="true"> <%= link.title %> </td>
-        <td class='url-field' data-filter='true' data-input='#filter' data-id="<%=link.id%>" contenteditable="true" style="text-decoration: <%if link.read %> line-through <% else %> none <% end %>"> <%= link.url %> </td>
+        <td class='url-field' data-filter='true' data-input='#filter' data-id="<%=link.id%>" contenteditable="true" style="text-decoration: <%if link.read %> line-through <% else %> none <% end %>"> <a href="<%=link.url%>"><%= link.url %></a></td>
         <td id='link-status-<%=link.id%>'>Read? <%= link.read %></td>
         <td id="toggle-link-status"><button class="button" data-id="<%=link.id%>" data-status="<%=link.read%>"><% if link.read %>Mark as Unread<% else %> Mark as Read <% end %></button></td>
       </tr>

@@ -20,7 +20,7 @@ function editTitle(){
 
 function editTitleOnClick(){
   $('#link-list').on('focusout', '.title-field', function(e){
-    var $link = $(this).closest(".link");
+    var $link = $(this);
     var $updated = $link.text();
     var updateParams = {
         title: $updated
@@ -37,7 +37,7 @@ function editTitleOnClick(){
 
 function editUrlOnClick(){
   $('#link-list').on('focusout', '.url-field', function(e){
-    var $link = $(this).closest(".link");
+    var $link = $(this);
     var $updated = $link.text();
     var updateParams = {
         url: $updated
@@ -56,7 +56,7 @@ function editUrl(){
   $('#link-list').on('keypress', '.url-field', function(e) {
     if(e.which === 13){
       
-    var $link = $(this).closest(".link");
+    var $link = $(this);
     var $updated = $link.text();
     var updateParams = {
         url: $updated
