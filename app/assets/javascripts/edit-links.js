@@ -72,19 +72,22 @@ function editUrl(){
   });
 }
 
+
 function searchBar(){
+  var $rows = $('.link-table').children()
+  var $links = $rows.children("tr.link-row")
+
   $('.search-bar').on('keyup', function(e){
-    var $currentSearchTerm = this.value;
-    var $linkList = $('#link-list').children();
+    var $currentSearchTerm = e.target.value;
+    console.log($currentSearchTerm)
     
-    $.each($linkList, function(index, link){
-      console.log($currentSearchTerm);
-      if ($(link).find(".title-field").text().indexOf($currentSearchTerm) !== -1 || $(link).find(".url-field").text().indexOf($currentSearchTerm) !== -1){
+    $links.each(function(index, link){
+      if ($(link).find(".title-field").text().toLowerCase().indexOf($currentSearchTerm) !== -1 ){
         $(link).show();
       } else {
         $(link).hide();
       }
     });
-    });    
+  });
 }
 

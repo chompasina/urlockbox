@@ -1,10 +1,10 @@
 $(document).ready(function(){
   changeStatus();
+  searchBar();
   editTitle();
   editTitleOnClick();
   editUrlOnClick();
   editUrl();
-  searchBar();
   // renderLinkList();
 });
 
