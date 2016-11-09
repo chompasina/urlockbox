@@ -1,6 +1,13 @@
 <h1> Links </h1>
 <%= link_to "Logout", logout_path, method: :delete %>
 
+<form style="text-align: center" class='ui-filterable'>
+  <input type="text" id='filter' data-type='search' class="search-bar" placeholder="Search">
+  <button type="button" class="filter-read">Filter by Read</button>
+  <button type="button" class="filter-unread">Filter by Unread</button>
+  <button type="button" class="filter-alpha">A -> Z</button>
+</form>
+<br>
 <%= form_for(@link, url: {action: "create"}) do |f| %>
   <%= f.label :title, 'Title' %>
   <%= f.text_field :title %>
@@ -11,17 +18,24 @@
 
 <h2>Your links</h2>
 <div id="link-list">
-  <ul>
-  <% @links.each do |link| %>
-    <div class='link' data-id='<%=link.id%>'>
-      <li><h5> Added Link <%= link.id%> on<%= link.created_at %> </h5></li>
-      <li><%= link.title %></li>
-      <li><%= link.url %></li>
-      <li class="link-status" id='link-status<%= link.id %>' > Read? <%= link.read %></li> 
-        <button data-id='<%= link.id %>' id='toggle-link-status'>Mark as Read</button>
-        
-    </div>
-  <% end %>
-  <ul>
+  <table class="link-table ui-filterable">
+    <tr id="header">
+      <th>Title</th>
+      <th>Link</th>
+      <th>Already Read?</th>
+      <th>Update Status</th>
+    </tr>
+    <tbody>
+      <% @links.each do |link| %>
+      <tr class="link-row" data-id="<%=link.id%>" data-status="<%=link.read%>">
+        <td class='title-field' data-filter='true' data-input='#filter' data-id="<%=link.id%>" contenteditable="true"> <%= link.title %> </td>
+        <td class='url-field' data-filter='true' data-input='#filter' data-id="<%=link.id%>" contenteditable="true" style="text-decoration: <%if link.read %> line-through <% else %> none <% end %>"> <%= link.url %> </td>
+        <td id='link-status-<%=link.id%>'>Read? <%= link.read %></td>
+        <td id="toggle-link-status"><button class="button" data-id="<%=link.id%>" data-status="<%=link.read%>"><% if link.read %>Mark as Unread<% else %> Mark as Read <% end %></button></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
 </div>
 
